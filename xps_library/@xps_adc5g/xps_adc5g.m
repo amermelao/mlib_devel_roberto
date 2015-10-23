@@ -253,6 +253,25 @@ b = set(b, 'supp_ip_names', supp_ip_names);
 b = set(b, 'supp_ip_versions', supp_ip_versions);
 
 % Add ports not explicitly provided in the yellow block
+% adc0
+misc_ports.ctrl_reset      = {1 'in'  [s.adc_str,'_dcm_reset']};
+misc_ports.ctrl_clk_in     = {1 'in'  get(xsg_obj,'clk_src')};
+misc_ports.ctrl_clk_out    = {1 'out' [s.adc_str,'_clk']};
+misc_ports.ctrl_clk90_out  = {1 'out' [s.adc_str,'_clk90']};
+misc_ports.ctrl_clk180_out = {1 'out' [s.adc_str,'_clk180']};
+misc_ports.ctrl_clk270_out = {1 'out' [s.adc_str,'_clk270']};
+misc_ports.ctrl_dcm_locked = {1 'out' [s.adc_str,'_dcm_locked']};
+misc_ports.dcm_reset       = {1 'in'  [s.adc_str,'_dcm_reset']};
+misc_ports.dcm_psdone      = {1 'out' [s.adc_str,'_psdone']};
+misc_ports.dcm_psclk       = {1 'in'  [s.adc_str,'_psclk']};
+misc_ports.dcm_psen        = {1 'in'  [s.adc_str,'_psen']};
+misc_ports.dcm_psincdec    = {1 'in'  [s.adc_str,'_psincdec']};
+misc_ports.fifo_full_cnt   = {16 'out' [s.adc_str,'_fifo_full_cnt']};
+misc_ports.fifo_empty_cnt  = {16 'out' [s.adc_str,'_fifo_empty_cnt']};
+misc_ports.tap_rst         = {1 'in' [s.adc_str,'_tap_rst']};
+misc_ports.datain_pin      = {5 'in' [s.adc_str,'_datain_pin']};
+misc_ports.datain_tap      = {5 'in' [s.adc_str,'_datain_tap']};
+% asc1
 misc_ports.ctrl_reset      = {1 'in'  [s.adc_str,'_dcm_reset']};
 misc_ports.ctrl_clk_in     = {1 'in'  get(xsg_obj,'clk_src')};
 misc_ports.ctrl_clk_out    = {1 'out' [s.adc_str,'_clk']};

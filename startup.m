@@ -11,6 +11,10 @@ addpath([getenv('XILINX_PATH'), '/ISE/sysgen/util/']);
 addpath([getenv('XILINX_PATH'), '/ISE/sysgen/bin/lin64']);
 addpath([getenv('MLIB_DEVEL_PATH'), '/casper_library']);
 addpath([getenv('MLIB_DEVEL_PATH'), '/xps_library']);
+addpath([getenv('MLIB_DEVEL_PATH'), '/monroe_library_15']); %aqui
+addpath([getenv('MLIB_DEVEL_PATH'), '/monroe_library_15/xblock_helper_functions']); %aqui
+addpath([getenv('MLIB_DEVEL_PATH'), '/xps_base']);
+addpath([getenv('MLIB_DEVEL_PATH'), '/casper_library/simulink_drawing_fns']);
 xlAddSysgen([getenv('XILINX_PATH'), '/ISE'])
 sysgen_startup
 % If CASPER_BACKPORT is in the environment with non-zero length, then force
@@ -22,4 +26,7 @@ if length(getenv('CASPER_BACKPORT')) > 0
 else
   load_system('casper_library');
   load_system('xps_library');
+%  load_system('monroe_library_15');
+%  load_system('monroe_library_latest');
+%  load_system('xps_base');
 end

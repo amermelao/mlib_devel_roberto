@@ -13,6 +13,7 @@ defaults = {...
 
 % Check to see if mask parameters have changed
 if same_state(blk, 'gcb', gcb, 'defaults', defaults, varargin{:}), return, end
+disp('lolol2')
 check_mask_type(blk, 'adc5g');
 munge_block(blk, varargin{:});
 
