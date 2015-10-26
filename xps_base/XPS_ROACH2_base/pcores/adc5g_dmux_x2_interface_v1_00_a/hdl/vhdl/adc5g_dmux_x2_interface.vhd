@@ -63,7 +63,7 @@ entity adc5g_dmux_x2_interface is
     
     adc0_datain_pin      : in std_logic_vector(4 downto 0);
     adc0_datain_tap      : in std_logic_vector(4 downto 0);
-    adc0_tap_rst         : in std_logic
+    adc0_tap_rst         : in std_logic;
 
 
     -- Ports 
@@ -119,7 +119,7 @@ entity adc5g_dmux_x2_interface is
     
     adc1_datain_pin      : in std_logic_vector(4 downto 0);
     adc1_datain_tap      : in std_logic_vector(4 downto 0);
-    adc1_tap_rst         : in std_logic
+    adc1_tap_rst         : in std_logic;
 
 
     -- external Ports 

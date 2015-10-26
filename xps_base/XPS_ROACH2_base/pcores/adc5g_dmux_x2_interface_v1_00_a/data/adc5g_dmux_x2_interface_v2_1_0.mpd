@@ -122,10 +122,11 @@ PORT adc1_ctrl_reset      = "", DIR = I
 # the clock is the same port for both adcs
 PORT ctrl_clk_in     = "", DIR = I, SIGIS = CLK
 #ADC0
-PORT adc0_ctrl_clk_out    = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
-PORT adc0_ctrl_clk90_out  = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
-PORT adc0_ctrl_clk180_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 " 
-PORT adc0_ctrl_clk270_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc0_ctrl_clk_out    = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc0_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc0_ctrl_clk90_out  = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc0_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc0_ctrl_clk180_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc0_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc0_ctrl_clk270_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc0_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+
 PORT adc0_ctrl_dcm_locked = "", DIR = O
 PORT adc0_fifo_full_cnt   = "", DIR = O, VEC = [15:0]
 PORT adc0_fifo_empty_cnt  = "", DIR = O, VEC = [15:0]
@@ -134,10 +135,11 @@ PORT adc0_dcm_psen        = "", DIR = I
 PORT adc0_dcm_psincdec    = "", DIR = I
 PORT adc0_dcm_psdone      = "", DIR = O
 #ADC1
-PORT adc1_ctrl_clk_out    = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
-PORT adc1_ctrl_clk90_out  = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
-PORT adc1_ctrl_clk180_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 " 
-PORT adc1_ctrl_clk270_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc1_ctrl_clk_out    = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc1_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc1_ctrl_clk90_out  = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc1_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc1_ctrl_clk180_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc1_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+PORT adc1_ctrl_clk270_out = "", DIR = O, SIGIS = CLK, CLK_INPORT = adc1_adc_clk_p_i, CLK_FACTOR = "1.0 / 2 "
+
 PORT adc1_ctrl_dcm_locked = "", DIR = O
 PORT adc1_fifo_full_cnt   = "", DIR = O, VEC = [15:0]
 PORT adc1_fifo_empty_cnt  = "", DIR = O, VEC = [15:0]
