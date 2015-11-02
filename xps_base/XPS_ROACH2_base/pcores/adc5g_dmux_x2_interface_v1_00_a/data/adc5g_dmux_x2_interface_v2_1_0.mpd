@@ -20,18 +20,18 @@ OPTION DESC = "ADC 5G w/PLL-ISERDES interface"
 ## Generics for VHDL or Parameters for Verilog ##
 #################################################
 #
-PARAMETER adc_bit_width = 8, DT = INTEGER
-PARAMETER clkin_period = 2.0, DT = REAL
-PARAMETER mmcm_m = 1.0, DT = REAL
-PARAMETER mmcm_d = 1, DT = INTEGER
-PARAMETER mmcm_o0 = 1.0, DT = REAL
-PARAMETER mmcm_o1 = 2, DT = INTEGER
-PARAMETER mode = 0, DT = INTEGER
+PARAMETER x2_adc_bit_width = 8, DT = INTEGER
+PARAMETER x2_clkin_period = 2.0, DT = REAL
+PARAMETER x2_mmcm_m = 1.0, DT = REAL
+PARAMETER x2_mmcm_d = 1, DT = INTEGER
+PARAMETER x2_mmcm_o0 = 1.0, DT = REAL
+PARAMETER x2_mmcm_o1 = 2, DT = INTEGER
+PARAMETER x2_mode = 0, DT = INTEGER
 PARAMETER use_adc0   = 1, DT = INTEGER
 PARAMETER use_adc1   = 0, DT = INTEGER
 PARAMETER using_cntl = 1, DT = INTEGER
-PARAMETER bufr_div   = 4, DT = INTEGER
-PARAMETER bufr_div_str = "4", DT = STRING
+PARAMETER x2_bufr_div   = 4, DT = INTEGER
+PARAMETER x2_bufr_div_str = "4", DT = STRING
 
 ###########
 ## Ports ##
@@ -44,23 +44,23 @@ PORT adc0_adc_clk_n_i = "", DIR = I, SIGIS = CLK
 PORT adc1_adc_clk_p_i = "", DIR = I, SIGIS = CLK
 PORT adc1_adc_clk_n_i = "", DIR = I, SIGIS = CLK
 ##ADC0
-PORT adc0_adc_data0_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data0_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data1_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data1_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data2_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data2_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data3_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc0_adc_data3_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
+PORT adc0_adc_data0_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data0_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data1_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data1_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data2_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data2_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data3_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_adc_data3_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
 ##ADC1
-PORT adc1_adc_data0_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data0_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data1_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data1_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data2_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data2_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data3_p_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
-PORT adc1_adc_data3_n_i = "", DIR = I, VEC = [(adc_bit_width-1):0]
+PORT adc1_adc_data0_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data0_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data1_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data1_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data2_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data2_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data3_p_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_adc_data3_n_i = "", DIR = I, VEC = [(x2_adc_bit_width-1):0]
 
 #PORT adc_reset_i = "", DIR = I
 PORT adc0_adc_reset_o = "", DIR = O
@@ -79,39 +79,39 @@ PORT adc1_sync  = "", DIR = O
 ##PORT adc_clk_o = "", DIR = O
 #
 #ADC0
-PORT adc0_user_data_i0 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i1 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i2 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i3 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i4 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i5 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i6 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_i7 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q0 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q1 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q2 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q3 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q4 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q5 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q6 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc0_user_data_q7 = "", DIR = O, VEC = [(adc_bit_width-1):0]
+PORT adc0_user_data_i0 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i1 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i2 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i3 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i4 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i5 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i6 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_i7 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q0 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q1 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q2 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q3 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q4 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q5 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q6 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc0_user_data_q7 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
 #ADC1
-PORT adc1_user_data_i0 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i1 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i2 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i3 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i4 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i5 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i6 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_i7 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q0 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q1 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q2 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q3 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q4 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q5 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q6 = "", DIR = O, VEC = [(adc_bit_width-1):0]
-PORT adc1_user_data_q7 = "", DIR = O, VEC = [(adc_bit_width-1):0]
+PORT adc1_user_data_i0 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i1 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i2 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i3 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i4 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i5 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i6 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_i7 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q0 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q1 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q2 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q3 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q4 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q5 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q6 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
+PORT adc1_user_data_q7 = "", DIR = O, VEC = [(x2_adc_bit_width-1):0]
 ## system ports
 #ADC0
 PORT adc0_dcm_reset       = "", DIR = I

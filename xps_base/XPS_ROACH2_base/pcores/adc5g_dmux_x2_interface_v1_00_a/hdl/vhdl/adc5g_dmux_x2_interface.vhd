@@ -30,15 +30,15 @@ use adc5g_dmux_x2_interface_v1_00_a.all;
 
 entity adc5g_dmux_x2_interface is
   generic (  
-    adc_bit_width   : integer :=8;
-    clkin_period    : real    :=2.0;  -- clock in period (ns)
-    mode            : integer :=0;    -- 1-channel mode
-    mmcm_m          : real    :=2.0;  -- MMCM multiplier value
-    mmcm_d          : integer :=1;    -- MMCM divide value
-    mmcm_o0         : real    :=2.0;  -- MMCM first clock divide
-    mmcm_o1         : integer :=2;    -- MMCM second clock divide
-    bufr_div        : integer :=4;
-    bufr_div_str    : string  :="4"
+    x2_adc_bit_width   : integer :=8;
+    x2_clkin_period    : real    :=2.0;  -- clock in period (ns)
+    x2_mode            : integer :=0;    -- 1-channel mode
+    x2_mmcm_m          : real    :=2.0;  -- MMCM multiplier value
+    x2_mmcm_d          : integer :=1;    -- MMCM divide value
+    x2_mmcm_o0         : real    :=2.0;  -- MMCM first clock divide
+    x2_mmcm_o1         : integer :=2;    -- MMCM second clock divide
+    x2_bufr_div        : integer :=4;
+    x2_bufr_div_str    : string  :="4"
     );
   port (      
     ctrl_clk_in     : in std_logic;-- this is the only entry that is common
@@ -71,32 +71,32 @@ entity adc5g_dmux_x2_interface is
     adc0_adc_clk_n_i     : in std_logic;
     adc0_adc_sync_p      : in std_logic;
     adc0_adc_sync_n      : in std_logic;
-    adc0_adc_data0_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i0:i1
-    adc0_adc_data0_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i0:i1
-    adc0_adc_data1_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q0:q1
-    adc0_adc_data1_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q0:q1
-    adc0_adc_data2_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i2:i3
-    adc0_adc_data2_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i2:i3
-    adc0_adc_data3_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q2:q3
-    adc0_adc_data3_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q2:q3
+    adc0_adc_data0_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i0:i1
+    adc0_adc_data0_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i0:i1
+    adc0_adc_data1_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q0:q1
+    adc0_adc_data1_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q0:q1
+    adc0_adc_data2_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i2:i3
+    adc0_adc_data2_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i2:i3
+    adc0_adc_data3_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q2:q3
+    adc0_adc_data3_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q2:q3
 
     adc0_sync            : out std_logic;
-    adc0_user_data_i0    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i1    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i2    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i3    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i4    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i5    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i6    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_i7    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q0    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q1    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q2    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q3    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q4    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q5    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q6    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc0_user_data_q7    : out std_logic_vector(adc_bit_width-1 downto 0);
+    adc0_user_data_i0    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i1    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i2    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i3    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i4    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i5    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i6    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_i7    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q0    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q1    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q2    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q3    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q4    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q5    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q6    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc0_user_data_q7    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
     adc0_adc_reset_o     : out std_logic;
 
     --ADC1
@@ -129,34 +129,33 @@ entity adc5g_dmux_x2_interface is
 
     adc1_adc_sync_p      : in std_logic;
     adc1_adc_sync_n      : in std_logic;
-    adc1_adc_data0_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i0:i1
-    adc1_adc_data0_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i0:i1
-    adc1_adc_data1_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q0:q1
-    adc1_adc_data1_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q0:q1
-    adc1_adc_data2_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i2:i3
-    adc1_adc_data2_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --i2:i3
-    adc1_adc_data3_p_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q2:q3
-    adc1_adc_data3_n_i   : in std_logic_vector(adc_bit_width-1 downto 0); --q2:q3
+    adc1_adc_data0_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i0:i1
+    adc1_adc_data0_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i0:i1
+    adc1_adc_data1_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q0:q1
+    adc1_adc_data1_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q0:q1
+    adc1_adc_data2_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i2:i3
+    adc1_adc_data2_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --i2:i3
+    adc1_adc_data3_p_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q2:q3
+    adc1_adc_data3_n_i   : in std_logic_vector(x2_adc_bit_width-1 downto 0); --q2:q3
 
     adc1_sync            : out std_logic;
-    adc1_user_data_i0    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i1    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i2    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i3    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i4    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i5    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i6    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_i7    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q0    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q1    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q2    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q3    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q4    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q5    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q6    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_user_data_q7    : out std_logic_vector(adc_bit_width-1 downto 0);
-    adc1_adc_reset_o     : out std_logic;
-    );
+    adc1_user_data_i0    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i1    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i2    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i3    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i4    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i5    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i6    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_i7    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q0    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q1    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q2    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q3    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q4    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q5    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q6    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_user_data_q7    : out std_logic_vector(x2_adc_bit_width-1 downto 0);
+    adc1_adc_reset_o     : out std_logic);
 end  adc5g_dmux_x2_interface ;
 
 ----------------------------------------------
@@ -164,18 +163,17 @@ end  adc5g_dmux_x2_interface ;
 ----------------------------------------------
 
 architecture behavioral of adc5g_dmux_x2_interface is
-
     component adc5g_dmux1_interface
         generic (  
-            adc_bit_width   : integer :=8;
-            clkin_period    : real    :=2.0;  -- clock in period (ns)
-            mode            : integer :=0;    -- 1-channel mode
-            mmcm_m          : real    :=2.0;  -- MMCM multiplier value
-            mmcm_d          : integer :=1;    -- MMCM divide value
-            mmcm_o0         : real    :=2.0;  -- MMCM first clock divide
-            mmcm_o1         : integer :=2;    -- MMCM second clock divide
-            bufr_div        : integer :=4;
-            bufr_div_str    : string  :="4"
+            adc_bit_width   : integer :=x2_adc_bit_width;
+            clkin_period    : real    :=x2_clkin_period;  -- clock in period (ns)
+            mode            : integer :=x2_mode;    -- 1-channel mode
+            mmcm_m          : real    :=x2_mmcm_m;  -- MMCM multiplier value
+            mmcm_d          : integer :=x2_mmcm_d;    -- MMCM divide value
+            mmcm_o0         : real    :=x2_mmcm_o0;  -- MMCM first clock divide
+            mmcm_o1         : integer :=x2_mmcm_o1;    -- MMCM second clock divide
+            bufr_div        : integer :=x2_bufr_div;
+            bufr_div_str    : string  :=x2_bufr_div_str
             );
         port (
             adc_clk_p_i     : in std_logic;
@@ -226,14 +224,13 @@ architecture behavioral of adc5g_dmux_x2_interface is
 
             datain_pin      : in std_logic_vector(4 downto 0);
             datain_tap      : in std_logic_vector(4 downto 0);
-            tap_rst         : in std_logic
-            );
+            tap_rst         : in std_logic);
     end component;
 
     begin
 
         ADC0:adc5g_dmux1_interface
-            port mat (
+            port map (
                 adc_clk_p_i     => adc0_adc_clk_p_i  , 
                 adc_clk_n_i     => adc0_adc_clk_n_i  , 
                 adc_sync_p      => adc0_adc_sync_p   , 
@@ -282,11 +279,11 @@ architecture behavioral of adc5g_dmux_x2_interface is
 
                 datain_pin      => adc0_datain_pin ,
                 datain_tap      => adc0_datain_tap ,
-                tap_rst         => adc0_tap_rst    ,
+                tap_rst         => adc0_tap_rst    
             );
 
         ADC1:adc5g_dmux1_interface
-            port mat (
+            port map (
                 adc_clk_p_i     => adc1_adc_clk_p_i  , 
                 adc_clk_n_i     => adc1_adc_clk_n_i  , 
                 adc_sync_p      => adc1_adc_sync_p   , 
@@ -335,10 +332,7 @@ architecture behavioral of adc5g_dmux_x2_interface is
 
                 datain_pin      => adc1_datain_pin ,
                 datain_tap      => adc1_datain_tap ,
-                tap_rst         => adc1_tap_rst    ,
+                tap_rst         => adc1_tap_rst    
             );
-
-    end  adc5g_dmux1_interface ;
-
 
 end behavioral; 

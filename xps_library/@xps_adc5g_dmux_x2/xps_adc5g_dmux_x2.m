@@ -349,7 +349,7 @@ ext_ports.adc1_adc_data3_n_i = {8 'in'  [s.adc_str_1,'data3_n_i']  ['{',adcport1
 b = set(b,'ext_ports',ext_ports);
 
 % Finally set parameters and gtfo
-parameters.CLKIN_PERIOD = num2str(1000/s.adc_clk_rate, '%.4f');
+parameters.X2_CLKIN_PERIOD = num2str(1000/s.adc_clk_rate, '%.4f');
 switch s.hw_sys
     case 'ROACH'
         parameters.PLL_M = num2str(pll_m, '%d');
@@ -357,16 +357,16 @@ switch s.hw_sys
         parameters.PLL_O0 = num2str(pll_o0, '%d');
         parameters.PLL_O1 = num2str(pll_o1, '%d');
     case 'ROACH2'
-        parameters.MMCM_M = num2str(pll_m, '%.4f');
-        parameters.MMCM_D = num2str(pll_d, '%d');
-        parameters.MMCM_O0 = num2str(pll_o0, '%.4f');
-        parameters.MMCM_O1 = num2str(pll_o1, '%d');
-	parameters.BUFR_DIV = num2str(bufr_div, '%d');
-	parameters.BUFR_DIV_STR = num2str(bufr_div, '"%d"');
+        parameters.X2_MMCM_M = num2str(pll_m, '%.4f');
+        parameters.X2_MMCM_D = num2str(pll_d, '%d');
+        parameters.X2_MMCM_O0 = num2str(pll_o0, '%.4f');
+        parameters.X2_MMCM_O1 = num2str(pll_o1, '%d');
+	parameters.X2_BUFR_DIV = num2str(bufr_div, '%d');
+	parameters.X2_BUFR_DIV_STR = num2str(bufr_div, '"%d"');
     otherwise
         error(['Unsupported hardware system: ',s.hw_sys]);
 end
 parameters.USE_ADC0 = num2str(s.use_adc0);
 parameters.USE_ADC1 = num2str(s.use_adc1);
-parameters.MODE = num2str(mode);
+parameters.X2_MODE = num2str(mode);
 b = set(b,'parameters',parameters);
