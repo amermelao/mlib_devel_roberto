@@ -1,4 +1,11 @@
 lib adc5g_dmux_x2_interface_v1_00_a gc2bin verilog
 lib adc5g_dmux_x2_interface_v1_00_a fifo_generator_v5_3 vhdl
 lib adc5g_dmux_x2_interface_v1_00_a adc5g_dmux1_interface vhdl
+lib adc5g_dmux_x2_interface_v1_00_a clock_sample
+lib adc5g_dmux_x2_interface_v1_00_a adc_reset
+lib adc5g_dmux_x2_interface_v1_00_a clock_sync_fsm
+lib basemodules_v1_00_a Counter
+lib basemodules_v1_00_a ShiftRegister
+lib basemodules_v1_00_a IOShiftRegister
+lib basemodules_v1_00_a Register
 lib adc5g_dmux_x2_interface_v1_00_a adc5g_dmux_x2_interface vhdl

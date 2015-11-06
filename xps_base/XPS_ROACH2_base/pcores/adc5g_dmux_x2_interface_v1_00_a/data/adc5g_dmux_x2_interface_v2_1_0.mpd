@@ -27,6 +27,7 @@ PARAMETER x2_mmcm_d = 1, DT = INTEGER
 PARAMETER x2_mmcm_o0 = 1.0, DT = REAL
 PARAMETER x2_mmcm_o1 = 2, DT = INTEGER
 PARAMETER x2_mode = 0, DT = INTEGER
+PARAMETER x2_interleave = 0, DT = INTEGER
 PARAMETER use_adc0   = 1, DT = INTEGER
 PARAMETER use_adc1   = 0, DT = INTEGER
 PARAMETER using_cntl = 1, DT = INTEGER

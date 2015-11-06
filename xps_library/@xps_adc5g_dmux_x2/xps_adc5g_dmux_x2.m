@@ -55,6 +55,7 @@ end
 
 s.hw_sys = get(xsg_obj,'hw_sys');
 s.using_ctrl = strcmp( get_param(blk_name, 'using_ctrl'), 'on' );
+s.interleave = strcmp( get_param(blk_name, 'interleave'), 'on' );
 actual_adc_clk_rate = eval_param(blk_name,'adc_clk_rate');
 
 if strcmp(demux, '1:1')
@@ -369,4 +370,5 @@ end
 parameters.USE_ADC0 = num2str(s.use_adc0);
 parameters.USE_ADC1 = num2str(s.use_adc1);
 parameters.X2_MODE = num2str(mode);
+parameters.X2_INTERLEAVE = num2str(s.interleave)
 b = set(b,'parameters',parameters);

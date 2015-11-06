@@ -38,7 +38,8 @@ entity adc5g_dmux_x2_interface is
     x2_mmcm_o0         : real    :=2.0;  -- MMCM first clock divide
     x2_mmcm_o1         : integer :=2;    -- MMCM second clock divide
     x2_bufr_div        : integer :=4;
-    x2_bufr_div_str    : string  :="4"
+    x2_bufr_div_str    : string  :="4";
+    x2_interleave      : integer :=0     -- to activate interleave mode
     );
   port (      
     ctrl_clk_in     : in std_logic;-- this is the only entry that is common
@@ -227,8 +228,30 @@ architecture behavioral of adc5g_dmux_x2_interface is
             tap_rst         : in std_logic);
     end component;
 
+    
+
+    -- Interleave block
+    component clock_sync_fsm
+        port (
+            adc0_clk90      : in std_logic;
+            adc0_clk180     : in std_logic;
+            adc0_clk270     : in std_logic;
+            adc0_clk        : in std_logic;
+            adc1_clk        : in std_logic;
+            ctrl_reset      : in std_logic;
+            dcm_psclk       : in std_logic;
+            adc0_dcm_locked : in std_logic;
+            adc1_dcm_locked : in std_logic;
+            
+            adc1_reset      : out std_logic;
+            sync_done       : out std_logic);
+     end component;
+
     begin
 
+        INTERLEAVE_BOARDS: if x2_interleave > 0 generate
+            INTERLEAVE_AUX_FUNCTIONS:;
+        end generate INTERLEAVE_BOARDS;
         ADC0:adc5g_dmux1_interface
             port map (
                 adc_clk_p_i     => adc0_adc_clk_p_i  , 
