@@ -164,6 +164,22 @@ end  adc5g_dmux_x2_interface ;
 ----------------------------------------------
 
 architecture behavioral of adc5g_dmux_x2_interface is
+
+    signal adc0_clk_0,
+           adc0_clk_90,
+           adc0_clk_180,
+           adc0_clk_270,
+           adc1_clk_0,
+           adc1_clk_90,
+           adc1_clk_180,
+           adc1_clk_270:std_logic;
+
+    signal signal_adc0_dcm_locked,
+           signal_adc1_dcm_locked:std_logic;
+
+    signal adc1_reset_interleave,
+           adc1_reset_interface:std_logic;
+
     component adc5g_dmux1_interface
         generic (  
             adc_bit_width   : integer :=x2_adc_bit_width;
@@ -242,16 +258,30 @@ architecture behavioral of adc5g_dmux_x2_interface is
             dcm_psclk       : in std_logic;
             adc0_dcm_locked : in std_logic;
             adc1_dcm_locked : in std_logic;
-            
+
             adc1_reset      : out std_logic;
             sync_done       : out std_logic);
      end component;
 
     begin
 
+
         INTERLEAVE_BOARDS: if x2_interleave > 0 generate
-            INTERLEAVE_AUX_FUNCTIONS:;
+            INTERLEAVE_AUX_FUNCTIONS:clock_sync_fsm
+            port map(
+                adc0_clk90      => adc0_clk_90,
+                adc0_clk180     => adc0_clk_180,
+                adc0_clk270     => adc0_clk_270,
+                adc0_clk        => adc0_clk_0,
+                adc1_clk        => adc1_clk_0,
+                ctrl_reset      => adc0_ctrl_reset or adc1_ctrl_reset,
+                dcm_psclk       => adc0_dcm_psclk,
+                adc0_dcm_locked => signal_adc0_dcm_locked,
+                adc1_dcm_locked => signal_adc1_dcm_locked,
+
+                adc1_reset      => adc1_reset_interleave);
         end generate INTERLEAVE_BOARDS;
+        
         ADC0:adc5g_dmux1_interface
             port map (
                 adc_clk_p_i     => adc0_adc_clk_p_i  , 
@@ -275,11 +305,11 @@ architecture behavioral of adc5g_dmux_x2_interface is
 
                 sync            => adc0_sync           ,
                 dcm_psdone      => adc0_dcm_psdone     ,
-                ctrl_clk_out    => adc0_ctrl_clk_out   ,
-                ctrl_clk90_out  => adc0_ctrl_clk90_out ,
-                ctrl_clk180_out => adc0_ctrl_clk180_out,
-                ctrl_clk270_out => adc0_ctrl_clk270_out,
-                ctrl_dcm_locked => adc0_ctrl_dcm_locked,
+                ctrl_clk_out    => adc0_clk_0   ,
+                ctrl_clk90_out  => adc0_clk_90 ,
+                ctrl_clk180_out => adc0_clk_180,
+                ctrl_clk270_out => adc0_clk_270, 
+                ctrl_dcm_locked => signal_adc0_dcm_locked,
                 fifo_full_cnt   => adc0_fifo_full_cnt  ,
                 fifo_empty_cnt  => adc0_fifo_empty_cnt ,
                 user_data_i0    => adc0_user_data_i0   ,
@@ -328,11 +358,11 @@ architecture behavioral of adc5g_dmux_x2_interface is
 
                 sync            => adc1_sync           ,
                 dcm_psdone      => adc1_dcm_psdone     ,
-                ctrl_clk_out    => adc1_ctrl_clk_out   ,
-                ctrl_clk90_out  => adc1_ctrl_clk90_out ,
-                ctrl_clk180_out => adc1_ctrl_clk180_out,
-                ctrl_clk270_out => adc1_ctrl_clk270_out,
-                ctrl_dcm_locked => adc1_ctrl_dcm_locked,
+                ctrl_clk_out    => adc1_clk_0   ,
+                ctrl_clk90_out  => adc1_clk_90 ,
+                ctrl_clk180_out => adc1_clk_180,
+                ctrl_clk270_out => adc1_clk_270,
+                ctrl_dcm_locked => signal_adc1_dcm_locked,
                 fifo_full_cnt   => adc1_fifo_full_cnt  ,
                 fifo_empty_cnt  => adc1_fifo_empty_cnt ,
                 user_data_i0    => adc1_user_data_i0   ,
@@ -351,11 +381,27 @@ architecture behavioral of adc5g_dmux_x2_interface is
                 user_data_q5    => adc1_user_data_q5   ,
                 user_data_q6    => adc1_user_data_q6   ,
                 user_data_q7    => adc1_user_data_q7   ,
-                adc_reset_o     => adc1_adc_reset_o    ,
+                adc_reset_o     => adc1_reset_interface,
 
                 datain_pin      => adc1_datain_pin ,
                 datain_tap      => adc1_datain_tap ,
                 tap_rst         => adc1_tap_rst    
             );
+
+            adc0_ctrl_clk_out <= adc0_clk_0;
+            adc0_ctrl_clk90_out <= adc0_clk_90;
+            adc0_ctrl_clk180_out <= adc0_clk_180;
+            adc0_ctrl_clk270_out <= adc0_clk_270;
+
+            adc1_ctrl_clk_out <= adc1_clk_0;
+            adc1_ctrl_clk90_out <= adc1_clk_90;
+            adc1_ctrl_clk180_out <= adc1_clk_180;
+            adc1_ctrl_clk270_out <= adc1_clk_270;
+
+            adc0_ctrl_dcm_locked <= signal_adc0_dcm_locked;
+            adc1_ctrl_dcm_locked <= signal_adc1_dcm_locked;
+
+            adc1_adc_reset_o <= adc1_reset_interface or adc1_reset_interleave;
+
 
 end behavioral; 
