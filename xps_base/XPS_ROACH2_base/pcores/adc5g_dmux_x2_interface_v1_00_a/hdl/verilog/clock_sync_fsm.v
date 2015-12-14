@@ -248,7 +248,8 @@ reg [3:0] next_state;
 	    state_decide: begin
 	      adc1_reset_block_rst = 1;
 	      delay_count_rst = 1;
-	      if (clk_sample180 && clk_sample90) begin
+	      // add td restriction to try and sync
+	      if (~clk_sample180 && clk_sample90) begin
 	        next_state = state_done;
 	      end else begin
 	        next_state = state_reset_adc;
